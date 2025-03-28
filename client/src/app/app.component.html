@@ -1,0 +1,61 @@
+<main class="flex justify-center overflow-x-hidden">
+  <div class="page-content  w-[333px] sm:w-full lg:w-[1280px] flex flex-col gap-12 lg:gap-36 sm:p-8 2xl:p-16">
+    <section id="section-apresentacao" class="flex flex-col-reverse sm:flex-row lg:justify-between h-screen min-h-550px] items-center justify-center gap-16">
+      <div id="texto-apresentacao" class="flex flex-col gap-4 md:w-full">
+        <h2 class="text-5xl md:text-7xl lg:text-9xl"><b>{{t("apresentacao1")}}</b></h2>
+        <h3 class="text-4xl md:text-5xl lg:text-7xl text-neutral-800 text-nowrap">{{t("apresentacao2")}} <b>{{t("nome")}}</b></h3>
+        <h4 class="text-2xl md:text-4xl lg:text-5xl text-neutral-600 gap-3 flex"><span>{{"Index.apresentacao3" | translate}}</span><b><span class="text-blue-700">{{t("apresentacao4")}}!</span></b></h4>
+      </div>
+      <img alt="" src="/images/imgtransparente.png" width="600" height="600" class="rounded-full overflow-hidden shadow-lg bg-blue-100">
+    </section>
+    <section id="section-habilidades" class="w-full flex items-center sm:items-start sm:flex-row flex-col justify-between -mt-32 sm:-mt-36 lg:-mt-56 gap-12">
+      <div id="habilidades" class="flex flex-col gap-4 flex-1 w-full">
+        <h3 class="text-neutral-800 text-2xl md:text-5xl sm:text-left"><b>{{t("habilidades")}}</b></h3>
+        <!-- {habilidades.map((habilidade) => {
+          return <div key={habilidade.tipo} class="flex flex-col lg:flex-row gap-4 ">
+            <h4 class="text-base font-bold md:text-2xl">{{t(habilidade.tipo)}}</h4>
+            <div class="habilidade-container flex gap-4">
+            {habilidade.valores?.map((valor) => {
+              if (typeof valor === "string") {
+                return <p key={valor} class="text-neutral-600 text-base md:text-lg">{{valor}}</p>
+              } else {
+                const tecnologia = InfoTecnologia[valor];
+                return <p key={valor} class="text-neutral-600 text-base md:text-lg flex justify-center gap-1">{{tecnologia.img ? <Image src={tecnologia.img} height={24} width={24} alt="icone" /> : <></>}{tecnologia.titulo}}</p>
+
+              }
+            })}
+            </div>
+          </div>
+        })} -->
+      </div>
+      <div id="linguagens" class="w-full flex flex-col gap-4 flex-1 ">
+        <h3 class="text-neutral-800 text-2xl md:text-5xl "><b>{{t("linguagens")}}</b></h3>
+        <!-- <LanguageContainer lingua={t("portugues")} nivel={t("nativo")} class="bg-green-50" bandeira={Brazil}/>
+        <LanguageContainer lingua={t("ingles")} nivel={t("avancado")} class="bg-blue-50" bandeira={Uk}/>
+        <LanguageContainer lingua={t("espanhol")} nivel={t("basico")} class="bg-yellow-50" bandeira={Spain}/> -->
+      </div>
+    </section>
+
+    <section id="section-projetos" class="flex flex-col justify-between gap-8">
+      <h3 class="text-neutral-800 text-2xl md:text-5xl text-center sm:text-left"><b>{{t("projetos")}}</b></h3>
+      <div class="content-holder h-[695px] w-full relative overflow-hidden rounded-3xl shadow-2xl">
+        <!-- <CarrosselProjetos/> -->
+      </div>
+    </section>
+
+    <section id="section-contato" class="flex lg:flex-row flex-col h-screen justify-evenly items-center">
+        <div id="contato-texto" class="flex flex-col gap-4 sm:flex-1">
+          <h2 class="text-5xl md:text-7xl lg:text-9xl"><b>{{t("conclusao1")}}</b></h2>
+          <h3 class="text-4xl md:text-5xl lg:text-7xl text-neutral-800">{{t("conclusao2")}}</h3>
+          <h4 class="text-2xl md:text-4xl lg:text-5xl text-neutral-600">{{t("conclusao3")}}</h4>
+        </div>
+        <div id="contatos" class="sm:flex-1 gap-4 flex flex-col items-end w-full">
+          <Button class="bg-blue-100 w-full lg:w-[400px] text-left px-6 py-4" icone={LinkedIn} href="https://www.linkedin.com/in/luis-eduardo-832957265/">LinkedIn</Button>
+          <Button class="bg-green-100 w-full lg:w-[400px] text-left px-6 py-4" icone={Whatsapp} href="https://api.whatsapp.com/send?phone=5121980863457" hrefCelular="whatsapp://send?phone=5121980863457">Whatsapp</Button>
+          <Button class="lg:w-[400px] w-full text-left px-6 py-4 bg-neutral-100" icone={Email} href="mailto:luis10barbo2020@gmail.com">E-mail</Button>
+          <Button class="lg:w-[400px] w-full text-left px-6 py-4 bg-neutral-100" icone={Cellphone} copiarTexto="51 21980863457">{{t("copiarNumeroCelular")}}</Button>
+        </div>
+    </section>
+  </div>
+</main>
+<router-outlet />

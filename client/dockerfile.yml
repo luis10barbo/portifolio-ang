@@ -1,0 +1,23 @@
+# Fetch node image 
+FROM node:23-alpine
+
+# Set the working directory (Inside the container)
+WORKDIR /app
+
+# Copy the package.json and package-lock.json to the container
+COPY package*.json ./
+
+# Build angular application 
+RUN npm install
+
+# Copy the source code to the container
+COPY . .
+
+RUN npm install -g @angular/cli
+# RUN npm run build 
+
+# Expose the port 4200
+EXPOSE 3010
+
+# Start the application
+CMD ["ng", "serve", "--port", "3010"] 
