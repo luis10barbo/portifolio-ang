@@ -8,6 +8,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
@@ -18,6 +19,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @RequiredArgsConstructor
+@AllArgsConstructor
 public class ProjectEntity {
     private @Id @GeneratedValue Long id;
     private @Nonnull String name;
@@ -26,7 +28,7 @@ public class ProjectEntity {
     private String website;
     private String download;
     private @Nonnull ProjectStatusEnum status;
-    private @OneToMany(targetEntity = SkillEntity.class, mappedBy = "techFront") List<SkillEntity> techFront;
-    private @OneToMany(targetEntity = SkillEntity.class, mappedBy = "techBack") List<SkillEntity> techBack;
+    private @OneToMany(targetEntity = SkillEntity.class) List<SkillEntity> techFront;
+    private @OneToMany(targetEntity = SkillEntity.class) List<SkillEntity> techBack;
     private @OneToMany(targetEntity = ImageEntity.class) List<ImageEntity> images; 
 }
