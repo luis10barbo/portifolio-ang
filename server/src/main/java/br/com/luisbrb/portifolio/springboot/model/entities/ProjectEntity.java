@@ -1,34 +1,41 @@
 package br.com.luisbrb.portifolio.springboot.model.entities;
 
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import br.com.luisbrb.portifolio.springboot.model.ProjectStatusEnum;
-import jakarta.annotation.Nonnull;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 @Entity
 @Getter
 @Setter
 @NoArgsConstructor
-@RequiredArgsConstructor
 @AllArgsConstructor
-public class ProjectEntity {
+@Valid
+@ToString
+public class ProjectEntity implements Serializable {
     private @Id @GeneratedValue Long id;
-    private @Nonnull String name;
+    private @Column(nullable = false) String name;
     private String description;
     private String repo;
     private String website;
     private String download;
-    private @Nonnull ProjectStatusEnum status;
-    private @OneToMany(targetEntity = SkillEntity.class) List<SkillEntity> techFront;
-    private @OneToMany(targetEntity = SkillEntity.class) List<SkillEntity> techBack;
-    private @OneToMany(targetEntity = ImageEntity.class) List<ImageEntity> images; 
+    private @NotNull @Column(nullable = false) ProjectStatusEnum status;
+    private @OneToMany(targetEntity = SkillEntity.class) List<SkillEntity> techFront = new ArrayList<>();
+    private @OneToMany(targetEntity = SkillEntity.class) List<SkillEntity> techBack = new ArrayList<>();
+    private @OneToMany(targetEntity = ImageEntity.class) List<ImageEntity> images = new ArrayList<>(); 
 }

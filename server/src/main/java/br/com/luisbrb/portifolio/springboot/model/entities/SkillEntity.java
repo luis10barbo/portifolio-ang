@@ -1,27 +1,33 @@
 package br.com.luisbrb.portifolio.springboot.model.entities;
 
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+
 import br.com.luisbrb.portifolio.springboot.model.SkillCategory;
 import br.com.luisbrb.portifolio.springboot.model.TechnologyTypeEnum;
-import jakarta.annotation.Nonnull;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
 @Entity
 @Getter
 @Setter
-@NoArgsConstructor
 @RequiredArgsConstructor
 @AllArgsConstructor
-public class SkillEntity {
+@Valid
+public class SkillEntity implements Serializable {
     private @Id @GeneratedValue Long id;
-    private @Nonnull String name;
-    private String img;
+    private @NotNull @Column(nullable = false) String name;
+    private @OneToMany(targetEntity = ImageEntity.class) List<ImageEntity> img = new ArrayList<>();
     private SkillCategory category;
     private TechnologyTypeEnum type;
 }
