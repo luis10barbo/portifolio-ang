@@ -1,0 +1,32 @@
+
+<div (mouseenter)="pararIntervalo()" (mouseleave)="criarIntervalo()"
+     (touchstart)="onTouchStart($event)" (touchend)="onTouchEnd()">
+  <div class="button-container">
+    @for (project of projects; track project.id; let i = $index) {
+      <button [class.active]="iProjetoAtual === i"
+              (click)="iProjetoAtual = i; intervalo = 0;">
+      </button>
+    }
+  </div>
+  <div class="progress-bar" [style.width.%]="(intervalo / tempoParaTrocar) * 100"></div>
+  @for (project of projects; track project.id; let i = $index) {
+    <div class="projeto"
+         [style.transform]="'translateX(' + ((100 * i) - (100 * iProjetoAtual)) + '%)'">
+      <a class="overlay"></a>
+      <div class="projeto-metadata">
+        <div class="tecnologias">
+          @for (tech of project.techBack.concat(project.techFront); track tech.id) {
+            <span>
+              @if (tech.image) {
+                <img [src]="tech.image" width="20" height="20" alt="icone tec">
+              }
+              {{ tech.name }}
+            </span>
+          }
+        </div>
+        <h3>{{ project.name }}</h3>
+      </div>
+      <img [src]="project.images[0]" [alt]="project.description || 'imagem projeto 1'">
+    </div>
+  }
+</div>
