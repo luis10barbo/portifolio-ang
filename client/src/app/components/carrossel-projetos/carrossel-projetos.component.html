@@ -1,32 +1,60 @@
-
-<div (mouseenter)="pararIntervalo()" (mouseleave)="criarIntervalo()"
-     (touchstart)="onTouchStart($event)" (touchend)="onTouchEnd()">
-  <div class="button-container">
-    @for (project of projects; track project.id; let i = $index) {
-      <button [class.active]="iProjetoAtual === i"
-              (click)="iProjetoAtual = i; intervalo = 0;">
-      </button>
+<div
+  (mouseenter)="pararIntervalo()"
+  (mouseleave)="criarIntervalo()"
+  (touchstart)="onTouchStart($event)"
+  (touchend)="onTouchEnd()"
+>
+  <div class="button-container absolute bottom-12 z-30 flex gap-4 w-full justify-center">
+    @for (project of projects; track i; let i = $index) {
+      <button
+        (click)="iProjetoAtual = i"
+        class="w-4 h-4 shadow-md"
+        [class.bg-neutral-900]="iProjetoAtual === i"
+        [class.bg-neutral-500]="iProjetoAtual !== i"
+      ></button>
     }
   </div>
-  <div class="progress-bar" [style.width.%]="(intervalo / tempoParaTrocar) * 100"></div>
-  @for (project of projects; track project.id; let i = $index) {
-    <div class="projeto"
-         [style.transform]="'translateX(' + ((100 * i) - (100 * iProjetoAtual)) + '%)'">
-      <a class="overlay"></a>
-      <div class="projeto-metadata">
-        <div class="tecnologias">
-          @for (tech of project.techBack.concat(project.techFront); track tech.id) {
-            <span>
-              @if (tech.image) {
-                <img [src]="tech.image" width="20" height="20" alt="icone tec">
-              }
-              {{ tech.name }}
-            </span>
+  <div class="bottom-0 absolute bg-green-200 h-2 z-30 duration-200" [style.width.%]="(intervalo / tempoParaTrocar) * 100"></div>
+
+  @for (project of projects; track i; let i = $index) {
+    <div class="h-[695px] w-full bg-white absolute duration-150 rounded-3xl overflow-hidden"
+      [style.transform]="'translateX(calc(' + ((100 * i) - (100 * iProjetoAtual)) + '% + ' + ((isTouching && isDragging) ? posAtualDrag - posInicialDrag.x : 0) + 'px))'">
+      <a [routerLink]="project?.id ? '/proj/' + project.id : '#'" class="absolute w-full h-full z-30 hover:bg-black/5 duration-75"></a>
+      <div class="overlay z-40 w-full absolute">
+        <div class="botoes-topo absolute left-4 top-24 sm:left-auto sm:top-4 sm:right-4 flex gap-2">
+          @if (project.website) {
+            <button class="bg-black text-base sm:text-xl text-white border-none shadow-md" [routerLink]="project.website">
+              {{ 'Index.acessar' | translate }}
+            </button>
+          }
+          @if (project.repo) {
+            <button class="bg-black text-base sm:text-xl text-white border-none shadow-md" [routerLink]="project.repo">
+              {{ 'Index.repositorio' | translate }}
+            </button>
+          }
+          @if (project.images.length > 1) {
+            <button class="bg-blue-400 text-base sm:text-xl text-white border-none shadow-md" [routerLink]="project?.id ? '/proj/' + project.id : '#'">
+              {{ project.images.length }} {{ 'Index.imagens' | translate }}
+            </button>
           }
         </div>
-        <h3>{{ project.name }}</h3>
+        <div class="project-metadata absolute top-4 left-4 bg-black text-white px-4 py-2 rounded-md shadow-md">
+          <div class="tecnologias flex gap-2">
+            @for (tech of project.techBack.concat(project.techFront); track tech.id; let i = $index) {
+              <span class="text-base sm:text-2xl flex gap-1">
+                @if (tech.image) {
+                  <img [src]="tech.image" width="20" height="20" alt="icone tec"/>
+                }
+                {{ tech.name }}
+              </span>
+            }
+          </div>
+          <h3 class="stroke-black stroke-1 text-2xl sm:text-5xl">
+            {{ project.name }}
+          </h3>
+        </div>
       </div>
-      <img [src]="project.images[0]" [alt]="project.description || 'imagem projeto 1'">
+      <img class="absolute h-full w-full object-contain" [src]="project.images[0]" [alt]="project.description ? project.description : 'imagem project ' + project.images" width="1280" height="720"/>
     </div>
   }
 </div>

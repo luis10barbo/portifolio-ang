@@ -1,11 +1,12 @@
 import { Component, HostListener, Input } from '@angular/core';
 import { ProjetoType } from '../../model/projetoModel';
-import { TranslateService } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { ScrollService } from '../../service/scroll/scroll.service';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-carrossel-projetos',
-  imports: [],
+  imports: [RouterLink, TranslateModule],
   templateUrl: './carrossel-projetos.component.html',
   styleUrl: './carrossel-projetos.component.scss'
 })
@@ -26,7 +27,9 @@ export class CarrosselProjetosComponent {
   constructor(
     private translate: TranslateService,
     private scroll: ScrollService,
-  ) {}
+  ) {
+    this.translate.setDefaultLang("pt");
+  }
 
   ngOnInit(): void {
     this.criarIntervalo();
