@@ -1,1 +1,30 @@
-<p>project-component works!</p>
+<div class="mt-28 py-16 lg:w-[1280px] m-auto overflow-hidden">
+    <h2 class="sm:text-9xl text-5xl font-bold text-center sm:text-left">
+      {{ project?.name }}
+    </h2>
+    <p class="text-xl sm:text-5xl text-neutral-700 pt-4 sm:text-left text-center">
+      {{ project?.description }}
+    </p>
+    
+    <div class="botoes flex gap-2">
+      @if (project?.website) {
+        <a [href]="project?.website" class="bg-black text-base sm:text-xl text-white border-none shadow-md">
+          {{ 'acessar' | translate }}
+        </a>
+      }
+  
+      @if (project?.repo) {
+        <a [href]="project?.repo" class="bg-black text-base sm:text-xl text-white border-none shadow-md">
+          {{ 'repositorio' | translate }}
+        </a>
+      }
+    </div>
+  
+    <div id="imagens" class="flex gap-4 pt-12 flex-wrap px-4">
+      @for (image of project?.images; track $index; let i = $index) {
+        <img [src]="urlImagens+image.id" [alt]="'imagem projeto ' + (i + 1)"
+             class="shadow-lg rounded-lg max-h-[720px] object-contain w-fit flex-1">
+      }
+    </div>
+  </div>
+  
