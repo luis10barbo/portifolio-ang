@@ -1,5 +1,8 @@
 package br.com.luisbrb.portifolio.springboot.controller.rest;
 
+import java.util.List;
+
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,5 +22,10 @@ public class SkillRestController {
     @PostMapping("/")
     public SkillEntity save(@RequestBody SkillEntity skillEntity) {
         return skillRepository.save(skillEntity);
+    }
+
+    @GetMapping("/all")
+    public List<SkillEntity> getAll() {
+        return skillRepository.findAll();
     }
 }
