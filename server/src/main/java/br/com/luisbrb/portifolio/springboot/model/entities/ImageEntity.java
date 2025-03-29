@@ -24,7 +24,6 @@ import lombok.Setter;
 @Valid
 public class ImageEntity implements Serializable {
     private @Id @GeneratedValue Long id;
-    @Lob
     @Basic(fetch = FetchType.LAZY)
     private @NotEmpty @Column(nullable = false) String picture;
 }

@@ -47,7 +47,7 @@ public class ProjectRestController {
     }
 
     @PostMapping()
-    void save(@RequestBody ProjectEntity entity) {
+    public ProjectEntity save(@RequestBody ProjectEntity entity) {
         System.out.println(entity.toString());
         entity.setId(null);
         if (!entity.getTechBack().isEmpty()) {
@@ -66,7 +66,7 @@ public class ProjectRestController {
                 }
             });
         }
-        projectRepository.save(entity);
+        return projectRepository.save(entity);
         // repository.save(new ProjectEntity(null, entity.name, entity.description, entity.repo, entity.website, entity.download, null, null, null, null));
     }
 }
