@@ -10,7 +10,7 @@ import { ImageServiceService } from '../../service/image/image-service.service';
   styleUrl: './criar-projeto.component.scss'
 })
 export class CriarProjetoComponent {
-  @ViewChild("nameInput") inputNome!: ElementRef<HTMLInputElement>;
+  @ViewChild("nameInput") inputName!: ElementRef<HTMLInputElement>;
   @ViewChild("descriptionInput") descriptionInput!: ElementRef<HTMLInputElement>;
   @ViewChild("repoInput") repoInput!: ElementRef<HTMLInputElement>;
   @ViewChild("websiteInput") websiteInput!: ElementRef<HTMLInputElement>;
@@ -38,9 +38,10 @@ export class CriarProjetoComponent {
     })
   }
   public clickSubmit() {
+    console.log(this.inputName.nativeElement, this.inputName.nativeElement.value);
     this.imageService.saveImages(this.images).subscribe((images) => {
       this.projetoService.criarProjeto({
-        name: this.inputNome.nativeElement.value,
+        name: this.inputName.nativeElement.value,
         description: this.descriptionInput.nativeElement.value,
         download: this.downloadInput.nativeElement.value,
         repo: this.repoInput.nativeElement.value,
