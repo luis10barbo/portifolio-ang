@@ -43,7 +43,8 @@
             @for (tech of project.techBack.concat(project.techFront); track tech.id; let i = $index) {
               <span class="text-base sm:text-2xl flex gap-1">
                 @if (tech.image) {
-                  <img [src]="tech.image" width="20" height="20" alt="icone tec"/>
+                  
+                  <img [src]="urlImagens + tech.image.id" width="20" height="20" alt="icone tec"/>
                 }
                 {{ tech.name }}
               </span>
@@ -54,7 +55,7 @@
           </h3>
         </div>
       </div>
-      <img class="absolute h-full w-full object-contain" [src]="project.images[0]" [alt]="project.description ? project.description : 'imagem project ' + project.images" width="1280" height="720"/>
+      <img class="absolute h-full w-full object-contain" [src]="project.images[0] ? urlImagens + project.images[0].id : ''" [alt]="project.description ? project.description : 'imagem project ' + project.images" width="1280" height="720"/>
     </div>
   }
 </div>

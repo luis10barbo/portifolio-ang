@@ -11,6 +11,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
@@ -27,7 +28,7 @@ import lombok.Setter;
 public class SkillEntity implements Serializable {
     private @Id @GeneratedValue Long id;
     private @NotNull @Column(nullable = false) String name;
-    private @OneToMany(targetEntity = ImageEntity.class) List<ImageEntity> img = new ArrayList<>();
+    private @OneToOne(targetEntity = ImageEntity.class) ImageEntity img;
     private SkillCategory category;
     private TechnologyTypeEnum type;
 }

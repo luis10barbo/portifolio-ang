@@ -18,7 +18,7 @@ import lombok.Getter;
 import lombok.ToString;
 
 @RestController
-@RequestMapping("/projects")
+@RequestMapping("/project")
 public class ProjectRestController {
     private final ProjectRepository projectRepository;
     private final SkillRepository skillRepository;

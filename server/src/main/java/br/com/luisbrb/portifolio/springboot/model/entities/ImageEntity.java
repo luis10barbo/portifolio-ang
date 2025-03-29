@@ -2,6 +2,10 @@ package br.com.luisbrb.portifolio.springboot.model.entities;
 
 import java.io.Serializable;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+import org.hibernate.annotations.Type;
+
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -25,5 +29,5 @@ import lombok.Setter;
 public class ImageEntity implements Serializable {
     private @Id @GeneratedValue Long id;
     @Basic(fetch = FetchType.LAZY)
-    private @NotEmpty @Column(nullable = false) String picture;
+    private @NotEmpty @Column(nullable = false, columnDefinition = "BYTEA") byte[] image;
 }

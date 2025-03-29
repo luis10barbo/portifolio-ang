@@ -19,6 +19,7 @@ export class AppComponent {
   constructor(private translate: TranslateService, private projetoService: ProjetoServiceService) {
     this.translate.setDefaultLang("pt");
     this.projetoService.getProjects().subscribe((projects) => {
+      console.log(projects);
       this.projects = projects;
     });
   }

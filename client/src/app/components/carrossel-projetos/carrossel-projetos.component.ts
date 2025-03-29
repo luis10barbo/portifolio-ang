@@ -3,6 +3,7 @@ import { ProjetoType } from '../../model/projetoModel';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { ScrollService } from '../../service/scroll/scroll.service';
 import { RouterLink } from '@angular/router';
+import { enviroment } from '../../../environment';
 
 @Component({
   selector: 'app-carrossel-projetos',
@@ -23,6 +24,8 @@ export class CarrosselProjetosComponent {
   posInicialDrag = { x: 0, y: 0 };
   posAtualDrag = 0;
   tempoParaTrocar = 5000;
+
+  urlImagens = `${enviroment.urlBackend}/image?id=`;
 
   constructor(
     private translate: TranslateService,
