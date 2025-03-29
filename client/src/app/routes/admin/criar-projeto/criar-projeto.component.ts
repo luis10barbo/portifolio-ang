@@ -1,7 +1,7 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
-import { ProjetoServiceService } from '../../service/projeto/projeto-service.service';
-import { ProjetoStatus } from '../../model/projetoModel';
-import { ImageServiceService } from '../../service/image/image-service.service';
+import { ProjetoServiceService } from '../../../service/projeto/projeto-service.service';
+import { ProjetoStatus } from '../../../model/projetoModel';
+import { ImageServiceService } from '../../../service/image/image-service.service';
 
 @Component({
   selector: 'app-criar-projeto',

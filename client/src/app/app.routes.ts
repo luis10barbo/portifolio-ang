@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
-import { CriarProjetoComponent } from './routes/criar-projeto/criar-projeto.component';
-import { CriarHabilidadeComponent } from './routes/criar-habilidade/criar-habilidade.component';
+import { CriarProjetoComponent } from './routes/admin/criar-projeto/criar-projeto.component';
+import { CriarHabilidadeComponent } from './routes/admin/criar-habilidade/criar-habilidade.component';
 import { AppComponent as HomeComponent } from './routes/home/home.component';
 
 export const routes: Routes = [
@@ -14,6 +14,10 @@ export const routes: Routes = [
     },
     {
         path: "admin/criar/habilidade",
+        component: CriarHabilidadeComponent
+    },
+    {
+        path: "proj/:id",
         component: CriarHabilidadeComponent
     }
 ];
