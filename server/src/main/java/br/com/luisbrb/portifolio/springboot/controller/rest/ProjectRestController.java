@@ -1,6 +1,5 @@
 package br.com.luisbrb.portifolio.springboot.controller.rest;
 
-import java.util.List;
 import java.util.Optional;
 
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,13 +10,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.luisbrb.portifolio.springboot.controller.repositories.ProjectRepository;
 import br.com.luisbrb.portifolio.springboot.controller.repositories.SkillRepository;
-import br.com.luisbrb.portifolio.springboot.model.ProjectStatusEnum;
 import br.com.luisbrb.portifolio.springboot.model.entities.ProjectEntity;
-import br.com.luisbrb.portifolio.springboot.model.entities.SkillEntity;
 import org.springframework.web.bind.annotation.RequestBody;
-import jakarta.validation.constraints.NotNull;
-import lombok.Getter;
-import lombok.ToString;
 
 @RestController
 @RequestMapping("/project")
