@@ -6,9 +6,9 @@ import { ImageType } from "./imageModel"
 // Versioning,
 // OperationalSystem
 
-export type SkillCategory = "Language" | "Framework" | "Database" | "Versioning" | "OperationalSystem";
+export type SkillCategory = "LANGUAGE" | "FRAMEWORK" | "DATABASE" | "VERSIONING" | "OPERATIONAL_SYSTEM";
 
-export type TechnologyTypeEnum = "Backend" | "Frontend"
+export type TechnologyTypeEnum = "BACKEND" | "FRONTEND"
 
 export type SkillType = {
     

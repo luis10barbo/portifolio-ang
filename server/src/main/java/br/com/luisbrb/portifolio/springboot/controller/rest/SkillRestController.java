@@ -21,6 +21,7 @@ public class SkillRestController {
 
     @PostMapping("/")
     public SkillEntity save(@RequestBody SkillEntity skillEntity) {
+        System.out.println(skillEntity.toString());
         return skillRepository.save(skillEntity);
     }
 

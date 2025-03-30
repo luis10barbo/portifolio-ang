@@ -5,23 +5,44 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { ProjetoServiceService } from '../../service/projeto/projeto-service.service';
 import { ProjetoType } from '../../model/projetoModel';
 import { CarrosselProjetosComponent } from "../../components/carrossel-projetos/carrossel-projetos.component";
+import { SkillCategory, SkillType } from '../../model/skillModel';
+import { SkillService } from '../../service/skill/skill-service.service';
+import { NgFor } from '@angular/common';
+import { enviroment } from '../../../environment';
+import { SkillHolderComponent } from "../../components/skill-holder/skill-holder.component";
 
 @Component({
   selector: 'home-root',
-  imports: [RouterOutlet, TranslateModule, CarrosselProjetosComponent],
+  imports: [RouterOutlet, TranslateModule, CarrosselProjetosComponent, SkillHolderComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
 export class AppComponent {
   title = 'portifolio';
-  projects: ProjetoType[] = []
+  projects: ProjetoType[] = [];
+  skills: SkillType[] = [];
+  skillByCategory: {[key in SkillCategory]: SkillType[]} = {DATABASE: [], FRAMEWORK: [], LANGUAGE: [], OPERATIONAL_SYSTEM: [], VERSIONING: []};
 
-  constructor(private translate: TranslateService, private projetoService: ProjetoServiceService) {
+  urlImagens = `${enviroment.urlBackend}/image?id=`;
+
+  constructor(private translate: TranslateService, private projetoService: ProjetoServiceService, private skillService: SkillService) {
     this.translate.setDefaultLang("pt");
     this.projetoService.getProjects().subscribe((projects) => {
       console.log(projects);
       this.projects = projects;
     });
+    this.skillService.getSkills().subscribe((skills) => {
+      console.log(skills);
+      this.skills = skills;
+      this.sortSkillsByCategory(skills);
+    })
+  }
+
+  public sortSkillsByCategory(skills: SkillType[]) {
+    skills.forEach((skill) => {
+      console.log(skill.category);
+      this.skillByCategory[skill.category].push(skill);
+    }) 
   }
 
   public t(str: string) {

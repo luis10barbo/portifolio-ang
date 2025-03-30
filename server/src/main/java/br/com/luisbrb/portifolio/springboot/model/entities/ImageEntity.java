@@ -2,6 +2,8 @@ package br.com.luisbrb.portifolio.springboot.model.entities;
 
 import java.io.Serializable;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -24,5 +26,6 @@ import lombok.Setter;
 public class ImageEntity implements Serializable {
     private @Id @GeneratedValue Long id;
     @Basic(fetch = FetchType.LAZY)
+    @JsonIgnore
     private @NotEmpty @Column(nullable = false, columnDefinition = "BYTEA") byte[] image;
 }

@@ -11,22 +11,12 @@
       <section id="section-habilidades" class="w-full flex items-center sm:items-start sm:flex-row flex-col justify-between -mt-32 sm:-mt-36 lg:-mt-56 gap-12">
         <div id="habilidades" class="flex flex-col gap-4 flex-1 w-full">
           <h3 class="text-neutral-800 text-2xl md:text-5xl sm:text-left"><b>{{t("habilidades")}}</b></h3>
-          <!-- {habilidades.map((habilidade) => {
-            return <div key={habilidade.tipo} class="flex flex-col lg:flex-row gap-4 ">
-              <h4 class="text-base font-bold md:text-2xl">{{t(habilidade.tipo)}}</h4>
-              <div class="habilidade-container flex gap-4">
-              {habilidade.valores?.map((valor) => {
-                if (typeof valor === "string") {
-                  return <p key={valor} class="text-neutral-600 text-base md:text-lg">{{valor}}</p>
-                } else {
-                  const tecnologia = InfoTecnologia[valor];
-                  return <p key={valor} class="text-neutral-600 text-base md:text-lg flex justify-center gap-1">{{tecnologia.img ? <Image src={tecnologia.img} height={24} width={24} alt="icone" /> : <></>}{tecnologia.titulo}}</p>
-  
-                }
-              })}
-              </div>
-            </div>
-          })} -->
+          <app-skill-holder title="linguagens" [skills]="skillByCategory.LANGUAGE"></app-skill-holder>
+          <app-skill-holder title="frameworks" [skills]="skillByCategory.FRAMEWORK"></app-skill-holder>
+          <app-skill-holder title="bancoDeDados" [skills]="skillByCategory.DATABASE"></app-skill-holder>
+          <app-skill-holder title="versionamento" [skills]="skillByCategory.VERSIONING"></app-skill-holder>
+          <app-skill-holder title="sistemasOperacionais" [skills]="skillByCategory.OPERATIONAL_SYSTEM" ></app-skill-holder>
+
         </div>
         <div id="linguagens" class="w-full flex flex-col gap-4 flex-1 ">
           <h3 class="text-neutral-800 text-2xl md:text-5xl "><b>{{t("linguagens")}}</b></h3>

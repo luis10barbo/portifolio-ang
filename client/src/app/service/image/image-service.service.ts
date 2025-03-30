@@ -8,13 +8,18 @@ import { ImageType } from '../../model/imageModel';
 })
 export class ImageServiceService {
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient) {}
 
-  public saveImages(images:{file: File, blob: string}[]) {
+  public saveImages(images:({file: File, blob: string} | undefined)[]) {
     const formData = new FormData();
     images.forEach((image) => {
+      if (!image) {
+        return;
+      }
       formData.append("image", image.file);
     });
     return this.httpClient.post<ImageType[]>(`${enviroment.urlBackend}/image`, formData, {withCredentials: true});
   }
+
+
 }
