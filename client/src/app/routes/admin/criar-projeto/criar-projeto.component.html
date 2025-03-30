@@ -28,6 +28,18 @@
                     <option value="INCOMPLETE">Incompleto</option>
                 </select>
             </div>
+            <fieldset>
+                <legend>Skills used in project</legend>
+                
+                @for (skill of skills; track skill.id) {
+                    <div>
+                        <input type="checkbox" [id]="'skill-'+ skill.name" (change)="toggleSkill(skill)"/>
+                        <label [for]="'skill-'+ skill.name">{{skill.name}}({{skill.type}})</label>
+                    </div>
+                }
+                
+            
+            </fieldset>
             <div class="image-holder flex flex-col gap-4">
                 <span>
                     Project Images (first will be thumbnail)

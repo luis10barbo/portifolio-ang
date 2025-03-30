@@ -28,11 +28,9 @@ export class AppComponent {
   constructor(private translate: TranslateService, private projetoService: ProjetoServiceService, private skillService: SkillService) {
     this.translate.setDefaultLang("pt");
     this.projetoService.getProjects().subscribe((projects) => {
-      console.log(projects);
       this.projects = projects;
     });
     this.skillService.getSkills().subscribe((skills) => {
-      console.log(skills);
       this.skills = skills;
       this.sortSkillsByCategory(skills);
     })
@@ -40,7 +38,6 @@ export class AppComponent {
 
   public sortSkillsByCategory(skills: SkillType[]) {
     skills.forEach((skill) => {
-      console.log(skill.category);
       this.skillByCategory[skill.category].push(skill);
     }) 
   }

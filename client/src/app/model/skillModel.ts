@@ -8,7 +8,7 @@ import { ImageType } from "./imageModel"
 
 export type SkillCategory = "LANGUAGE" | "FRAMEWORK" | "DATABASE" | "VERSIONING" | "OPERATIONAL_SYSTEM";
 
-export type TechnologyTypeEnum = "BACKEND" | "FRONTEND"
+export type TechnologyTypeEnum = "BACKEND" | "FRONTEND";
 
 export type SkillType = {
     

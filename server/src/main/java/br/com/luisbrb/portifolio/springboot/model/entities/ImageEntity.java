@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import br.com.luisbrb.portifolio.springboot.model.ImageTypeEnum;
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -28,4 +29,5 @@ public class ImageEntity implements Serializable {
     @Basic(fetch = FetchType.LAZY)
     @JsonIgnore
     private @NotEmpty @Column(nullable = false, columnDefinition = "BYTEA") byte[] image;
+    private @NotEmpty ImageTypeEnum type;
 }

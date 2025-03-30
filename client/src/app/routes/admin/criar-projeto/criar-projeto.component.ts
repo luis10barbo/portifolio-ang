@@ -1,7 +1,9 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { ProjetoServiceService } from '../../../service/projeto/projeto-service.service';
-import { ProjetoStatus } from '../../../model/projetoModel';
+import { ProjetoStatus, ProjetoType } from '../../../model/projetoModel';
 import { ImageServiceService } from '../../../service/image/image-service.service';
+import { SkillService } from '../../../service/skill/skill-service.service';
+import { SkillType } from '../../../model/skillModel';
 
 @Component({
   selector: 'app-criar-projeto',
@@ -19,8 +21,15 @@ export class CriarProjetoComponent {
   @ViewChild("imagesInput") imagesInput!: ElementRef<HTMLInputElement>;
   
   images: {file: File, blob: string}[] = [];
+  skills: SkillType[] = [];
+
+  usedSkills = new Set<SkillType>();
+
   
-  constructor(private projetoService: ProjetoServiceService, private imageService: ImageServiceService) {
+  constructor(private projetoService: ProjetoServiceService, private imageService: ImageServiceService, private skillService: SkillService) {
+    skillService.getSkills().subscribe((skills) => {
+      this.skills = skills;
+    })
   }
   
   onChangeImages(event: Event) {
@@ -37,10 +46,18 @@ export class CriarProjetoComponent {
       };
     })
   }
+
+  toggleSkill(skill: SkillType) {
+    if (this.usedSkills.has(skill)) {
+      this.usedSkills.delete(skill);
+      return;
+    }
+    this.usedSkills.add(skill);
+  }
+
   public clickSubmit() {
-    console.log(this.inputName.nativeElement, this.inputName.nativeElement.value);
     this.imageService.saveImages(this.images).subscribe((images) => {
-      this.projetoService.criarProjeto({
+      const projeto: ProjetoType = {
         name: this.inputName.nativeElement.value,
         description: this.descriptionInput.nativeElement.value,
         download: this.downloadInput.nativeElement.value,
@@ -50,7 +67,17 @@ export class CriarProjetoComponent {
         techFront: [],
         images: images,
         status: this.statusSelect.nativeElement.value as ProjetoStatus
-      }).subscribe();
+      };
+
+      this.usedSkills.forEach((skill) => {
+        if (skill.type === "BACKEND") {
+          projeto.techBack.push(skill);
+        } else {
+          projeto.techFront.push(skill);
+        }
+      }) 
+
+      this.projetoService.criarProjeto(projeto).subscribe();
     });
   }
 }

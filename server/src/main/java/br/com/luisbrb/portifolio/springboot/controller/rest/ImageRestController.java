@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import br.com.luisbrb.portifolio.springboot.controller.repositories.ImageRepository;
+import br.com.luisbrb.portifolio.springboot.model.ImageTypeEnum;
 import br.com.luisbrb.portifolio.springboot.model.entities.ImageEntity;
 
 @RestController
@@ -28,16 +30,44 @@ public class ImageRestController {
         this.imageRepository = imageRepository;
     }
     
-    @PostMapping(path = "", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public List<ImageEntity> save(@RequestPart("image") MultipartFile[] formData) throws IOException {
-        List<ImageEntity> imageList = new ArrayList<>();
-        for (MultipartFile image : formData) {
-            imageList.add(new ImageEntity(null, image.getBytes()));
+    private String getFileExtension(String filename) {
+        if (filename == null) {
+            return null;
         }
-        return imageRepository.saveAll(imageList);
+        int dotIndex = filename.lastIndexOf(".");
+        if (dotIndex >= 0) {
+            return filename.substring(dotIndex + 1);
+        }
+        return "";
     }
 
-    @GetMapping(path="", produces = MediaType.IMAGE_JPEG_VALUE) 
+    @PostMapping(path = "", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public ResponseEntity<List<ImageEntity>> save(@RequestPart("image") MultipartFile[] formData) throws IOException {
+        List<ImageEntity> imageList = new ArrayList<>();
+        for (MultipartFile image : formData) {
+            ImageTypeEnum type = null;
+            switch (getFileExtension(image.getOriginalFilename())) {
+                case "png":
+                    type = ImageTypeEnum.PNG;
+                    break;
+                case "jpeg":
+                case "jpg":
+                    type = ImageTypeEnum.JPEG;
+                    break;
+                case "svg":
+                    type = ImageTypeEnum.SVG;
+                    break;
+                default:
+                    return ResponseEntity.badRequest().build();
+                     
+            }
+            
+            imageList.add(new ImageEntity(null, image.getBytes(), type));
+        }
+        return ResponseEntity.ok(imageRepository.saveAll(imageList));
+    }
+
+    @GetMapping(path="") 
     public ResponseEntity<?> get(@RequestParam("id") Long id) {
         if (id == null) {
             return ResponseEntity.badRequest().build();
@@ -48,6 +78,19 @@ public class ImageRestController {
             return ResponseEntity.notFound().build();
         }
 
-        return ResponseEntity.ok(image.get().getImage());
+        HttpHeaders headers = new HttpHeaders();
+        switch (image.get().getType()) {
+            case JPEG:
+                headers.add("Content-Type", MediaType.IMAGE_JPEG_VALUE);
+                break;
+            case PNG:
+                headers.add("Content-Type", MediaType.IMAGE_PNG_VALUE);
+                break;
+            case SVG:
+                headers.add("Content-Type", "image/svg+xml");
+                break;
+        }
+
+        return ResponseEntity.ok().headers(headers).body(image.get().getImage());
     }
 }
