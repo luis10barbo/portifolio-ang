@@ -8,9 +8,7 @@
     @for (project of projects; track i; let i = $index) {
       <button
         (click)="iProjetoAtual = i"
-        class="w-4 h-4 shadow-md"
-        [class.bg-neutral-900]="iProjetoAtual === i"
-        [class.bg-neutral-500]="iProjetoAtual !== i"
+        [class]="`w-4 h-4 shadow-md rounded-full ${iProjetoAtual === i ? 'bg-neutral-900' : 'bg-neutral-500'}`"
       ></button>
     }
   </div>
@@ -23,17 +21,17 @@
       <div class="overlay z-40 w-full absolute">
         <div class="botoes-topo absolute left-4 top-24 sm:left-auto sm:top-4 sm:right-4 flex gap-2">
           @if (project.website) {
-            <a class="bg-black text-base sm:text-xl text-white border-none shadow-md" [href]="project.website">
+            <a class="bg-black text-base sm:text-xl text-white border-none shadow-md p-2 rounded-md" [href]="project.website">
               {{ 'Index.acessar' | translate }}
             </a>
           }
           @if (project.repo) {
-            <a class="bg-black text-base sm:text-xl text-white border-none shadow-md" [href]="project.repo">
+            <a class="bg-black text-base sm:text-xl text-white border-none shadow-md  p-2 rounded-md" [href]="project.repo">
               {{ 'Index.repositorio' | translate }}
             </a>
           }
           @if (project.images.length > 1) {
-            <a class="bg-blue-400 text-base sm:text-xl text-white border-none shadow-md" [href]="project?.id ? '/proj/' + project.id : '#'">
+            <a class="bg-blue-400 text-base sm:text-xl text-white border-none shadow-md  p-2 rounded-md" [href]="project?.id ? '/proj/' + project.id : '#'">
               {{ project.images.length }} {{ 'Index.imagens' | translate }}
             </a>
           }
