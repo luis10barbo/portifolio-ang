@@ -22,17 +22,17 @@
         <div class="botoes-topo absolute left-4 top-24 sm:left-auto sm:top-4 sm:right-4 flex gap-2">
           @if (project.website) {
             <a class="bg-black text-base sm:text-xl text-white border-none shadow-md p-2 rounded-md" [href]="project.website">
-              {{ 'Index.acessar' | translate }}
+              Acessar
             </a>
           }
           @if (project.repo) {
             <a class="bg-black text-base sm:text-xl text-white border-none shadow-md  p-2 rounded-md" [href]="project.repo">
-              {{ 'Index.repositorio' | translate }}
+              Repositório
             </a>
           }
           @if (project.images.length > 1) {
             <a class="bg-blue-400 text-base sm:text-xl text-white border-none shadow-md  p-2 rounded-md" [href]="project?.id ? '/proj/' + project.id : '#'">
-              {{ project.images.length }} {{ 'Index.imagens' | translate }}
+              {{ project.images.length }} Imagens
             </a>
           }
         </div>
