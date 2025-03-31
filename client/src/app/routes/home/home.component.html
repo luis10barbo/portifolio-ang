@@ -2,24 +2,24 @@
     <div class="page-content  w-[333px] sm:w-full lg:w-[1280px] flex flex-col gap-12 lg:gap-36 sm:p-8 2xl:p-16">
       <section id="section-apresentacao" class="flex flex-col-reverse sm:flex-row lg:justify-between h-screen min-h-550px] items-center justify-center gap-16">
         <div id="texto-apresentacao" class="flex flex-col gap-4 md:w-full">
-          <h2 class="text-5xl md:text-7xl lg:text-9xl"><b>{{t("apresentacao1")}}</b></h2>
-          <h3 class="text-4xl md:text-5xl lg:text-7xl text-neutral-800 text-nowrap">{{t("apresentacao2")}} <b>{{t("nome")}}</b></h3>
-          <h4 class="text-2xl md:text-4xl lg:text-5xl text-neutral-600 gap-3 flex"><span>{{"Index.apresentacao3" | translate}}</span><b><span class="text-blue-700">{{t("apresentacao4")}}!</span></b></h4>
+          <h2 class="text-5xl md:text-7xl lg:text-9xl"><b>Olá,</b></h2>
+          <h3 class="text-4xl md:text-5xl lg:text-7xl text-neutral-800 text-nowrap">Eu sou  <b>Luís Eduardo</b></h3>
+          <h4 class="text-2xl md:text-4xl lg:text-5xl text-neutral-600 gap-3 flex"><span>Seu futuro</span><b><span class="text-blue-700">desenvolvedor!</span></b></h4>
         </div>
         <img alt="" src="/images/imgtransparente.png" width="600" height="600" class="rounded-full overflow-hidden shadow-lg bg-blue-100">
       </section>
       <section id="section-habilidades" class="w-full flex items-center sm:items-start sm:flex-row flex-col justify-between -mt-32 sm:-mt-36 lg:-mt-56 gap-12">
         <div id="habilidades" class="flex flex-col gap-4 flex-1 w-full">
-          <h3 class="text-neutral-800 text-2xl md:text-5xl sm:text-left"><b>{{t("habilidades")}}</b></h3>
-          <app-skill-holder title="linguagens" [skills]="skillByCategory.LANGUAGE"></app-skill-holder>
-          <app-skill-holder title="frameworks" [skills]="skillByCategory.FRAMEWORK"></app-skill-holder>
-          <app-skill-holder title="bancoDeDados" [skills]="skillByCategory.DATABASE"></app-skill-holder>
-          <app-skill-holder title="versionamento" [skills]="skillByCategory.VERSIONING"></app-skill-holder>
-          <app-skill-holder title="sistemasOperacionais" [skills]="skillByCategory.OPERATIONAL_SYSTEM" ></app-skill-holder>
+          <h3 class="text-neutral-800 text-2xl md:text-5xl sm:text-left"><b>Habilidades</b></h3>
+          <app-skill-holder title="Habilidades" [skills]="skillByCategory.LANGUAGE"></app-skill-holder>
+          <app-skill-holder title="Frameworks" [skills]="skillByCategory.FRAMEWORK"></app-skill-holder>
+          <app-skill-holder title="Bancos de Dados" [skills]="skillByCategory.DATABASE"></app-skill-holder>
+          <app-skill-holder title="Versionamento" [skills]="skillByCategory.VERSIONING"></app-skill-holder>
+          <app-skill-holder title="Sistemas Operacionais" [skills]="skillByCategory.OPERATIONAL_SYSTEM" ></app-skill-holder>
 
         </div>
         <div id="linguagens" class="w-full flex flex-col gap-4 flex-1 ">
-          <h3 class="text-neutral-800 text-2xl md:text-5xl "><b>{{t("linguagens")}}</b></h3>
+          <h3 class="text-neutral-800 text-2xl md:text-5xl "><b>Linguagens</b></h3>
           <div class="bg-green-50 px-6 py-4 rounded-md flex gap-4 ">
             <img src="/images/bandeiras/brazil.svg" alt="br" class="md:w-[32px] w-[16px] " />
             <p class="text-base md:text-xl">Português<span class="text-neutral-600 pl-2" >Nativo</span></p>
@@ -39,22 +39,22 @@
       </section>
   
       <section id="section-projetos" class="flex flex-col justify-between gap-8">
-        <h3 class="text-neutral-800 text-2xl md:text-5xl text-center sm:text-left"><b>{{t("projetos")}}</b></h3>
+        <h3 class="text-neutral-800 text-2xl md:text-5xl text-center sm:text-left"><b>Projetos</b></h3>
         <div class="content-holder h-[695px] w-full relative overflow-hidden rounded-3xl shadow-2xl">
           <app-carrossel-projetos [projects]="projects"/>
         </div>
       </section>
       <section id="section-contato" class="flex lg:flex-row flex-col h-screen justify-evenly items-center">
           <div id="contato-texto" class="flex flex-col gap-4 sm:flex-1">
-            <h2 class="text-5xl md:text-7xl lg:text-9xl"><b>{{t("conclusao1")}}</b></h2>
-            <h3 class="text-4xl md:text-5xl lg:text-7xl text-neutral-800">{{t("conclusao2")}}</h3>
-            <h4 class="text-2xl md:text-4xl lg:text-5xl text-neutral-600">{{t("conclusao3")}}</h4>
+            <h2 class="text-5xl md:text-7xl lg:text-9xl"><b>Eai,</b></h2>
+            <h3 class="text-4xl md:text-5xl lg:text-7xl text-neutral-800">Ficou interessado?</h3>
+            <h4 class="text-2xl md:text-4xl lg:text-5xl text-neutral-600">Entre em contato comigo :)</h4>
           </div>
           <div id="contatos" class="sm:flex-1 gap-4 flex flex-col items-end w-full">
             <a class="bg-blue-100 w-full lg:w-[400px] text-left px-6 py-4 flex gap-2 items-center" href="https://www.linkedin.com/in/luis-eduardo-832957265/"><img src="/images/icons/linkedin.svg" alt="" style="max-width: 32px; max-height: 32px;"/>LinkedIn</a>
             <a class="bg-green-100 w-full lg:w-[400px] text-left px-6 py-4 flex gap-2 items-center" href="https://api.whatsapp.com/send?phone=5121980863457" hrefCelular="whatsapp://send?phone=5121980863457"><img src="/images/icons/whatsapp.svg" alt="" style="max-width: 32px; max-height: 32px;"/>Whatsapp</a>
             <a class="lg:w-[400px] w-full text-left px-6 py-4 bg-neutral-100 flex gap-2 items-center" href="mailto:luis10barbo2020@gmail.com"><img src="/images/icons/linkedin.svg" alt="" style="max-width: 32px; max-height: 32px;"/>E-mail</a>
-            <a class="lg:w-[400px] w-full text-left px-6 py-4 bg-neutral-100 flex gap-2 items-center"  copiarTexto="51 21980863457"><img src="/images/icons/cellphone.svg" alt="" style="max-width: 32px; max-height: 32px;"/>{{t("copiarNumeroCelular")}}</a>
+            <a class="lg:w-[400px] w-full text-left px-6 py-4 bg-neutral-100 flex gap-2 items-center"  copiarTexto="51 21980863457"><img src="/images/icons/cellphone.svg" alt="" style="max-width: 32px; max-height: 32px;"/>Copiar número de celular</a>
           </div>
       </section>
     </div>

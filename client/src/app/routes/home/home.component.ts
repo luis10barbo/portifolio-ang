@@ -26,7 +26,7 @@ export class AppComponent {
   urlImagens = `${enviroment.urlBackend}/image?id=`;
 
   constructor(private translate: TranslateService, private projetoService: ProjetoServiceService, private skillService: SkillService) {
-    this.translate.setDefaultLang("pt");
+    // this.translate.setDefaultLang("pt");
     this.projetoService.getProjects().subscribe((projects) => {
       this.projects = projects;
     });

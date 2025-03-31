@@ -31,7 +31,7 @@ export class CarrosselProjetosComponent {
     private translate: TranslateService,
     private scroll: ScrollService,
   ) {
-    this.translate.setDefaultLang("pt");
+    // this.translate.setDefaultLang("pt");
   }
 
   ngOnInit(): void {
