@@ -17,7 +17,7 @@ import br.com.luisbrb.portifolio.springboot.model.entities.ProjectEntity;
 import org.springframework.web.bind.annotation.RequestBody;
 
 @RestController
-@RequestMapping("/project")
+@RequestMapping("/api/project")
 public class ProjectRestController {
     private final ProjectRepository projectRepository;
     private final SkillRepository skillRepository;

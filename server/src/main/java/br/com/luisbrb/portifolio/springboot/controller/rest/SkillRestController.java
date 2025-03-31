@@ -15,7 +15,7 @@ import br.com.luisbrb.portifolio.springboot.model.Constants;
 import br.com.luisbrb.portifolio.springboot.model.entities.SkillEntity;
 
 @RestController
-@RequestMapping("/skill")
+@RequestMapping("/api/skill")
 public class SkillRestController {
     private SkillRepository skillRepository;
     public SkillRestController(SkillRepository skillRepository) {
