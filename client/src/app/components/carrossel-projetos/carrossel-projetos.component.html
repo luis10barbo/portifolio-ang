@@ -19,7 +19,7 @@
       [style.transform]="'translateX(calc(' + ((100 * i) - (100 * iProjetoAtual)) + '% + ' + ((isTouching && isDragging) ? posAtualDrag - posInicialDrag.x : 0) + 'px))'">
       <a [routerLink]="project?.id ? '/proj/' + project.id : '#'" class="absolute w-full h-full z-30 hover:bg-black/5 duration-75"></a>
       <div class="overlay z-40 w-full absolute">
-        <div class="botoes-topo absolute left-4 top-24 sm:left-auto sm:top-4 sm:right-4 flex gap-2">
+        <div class="botoes-topo absolute left-4 top-32 sm:left-auto sm:top-4 sm:right-4 flex gap-2">
           @if (project.website) {
             <a class="bg-black text-base sm:text-xl text-white border-none shadow-md p-2 rounded-md" [href]="project.website">
               Acessar
