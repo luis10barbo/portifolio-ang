@@ -23,7 +23,7 @@ export const routes: Routes = [
         component: ProjectComponentComponent
     },
     {
-        path: "admin/login",
+        path: "admin",
         component: LoginComponent
     }
 ];

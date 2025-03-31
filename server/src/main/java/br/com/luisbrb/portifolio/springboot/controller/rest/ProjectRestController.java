@@ -2,14 +2,17 @@ package br.com.luisbrb.portifolio.springboot.controller.rest;
 
 import java.util.Optional;
 
+import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.luisbrb.portifolio.springboot.controller.AuthenticationUtils;
 import br.com.luisbrb.portifolio.springboot.controller.repositories.ProjectRepository;
 import br.com.luisbrb.portifolio.springboot.controller.repositories.SkillRepository;
+import br.com.luisbrb.portifolio.springboot.model.Constants;
 import br.com.luisbrb.portifolio.springboot.model.entities.ProjectEntity;
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -35,8 +38,11 @@ public class ProjectRestController {
     }
 
     @PostMapping()
-    public ProjectEntity save(@RequestBody ProjectEntity entity) {
-        System.out.println(entity.toString());
+    public ProjectEntity save(@CookieValue(name = Constants.AUTH_COOKIE) String authCookie, @RequestBody ProjectEntity entity) {
+        if (!AuthenticationUtils.isLoggedIn(authCookie)) {
+            return null;
+        };
+
         entity.setId(null);
         if (!entity.getTechBack().isEmpty()) {
             entity.getTechBack().forEach(skillTech -> {

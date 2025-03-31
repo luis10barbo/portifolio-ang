@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.luisbrb.portifolio.springboot.controller.AuthenticationUtils;
 import br.com.luisbrb.portifolio.springboot.controller.repositories.AuthorizationRepository;
 import br.com.luisbrb.portifolio.springboot.model.Constants;
 import br.com.luisbrb.portifolio.springboot.model.entities.AuthorizationEntity;
@@ -26,22 +27,9 @@ public class AuthRestController {
         this.authorizationRepository = authorizationEntity;
     }
 
-    public boolean isLoggedIn(String authCookie) {
-        List<AuthorizationEntity> authorizationEntity = authorizationRepository.findAll();
-        if (authorizationEntity == null || authorizationEntity.isEmpty()) {
-            return false;
-        }
-
-        if (authorizationEntity.get(0).getUserCookie() == authCookie) {
-            return false;
-        }
-
-        return true;
-    }
-
     @GetMapping("/check")
     public boolean check(@CookieValue(name = Constants.AUTH_COOKIE, required = false) String authCookie) {
-        return isLoggedIn(authCookie);
+        return AuthenticationUtils.isLoggedIn(authCookie);
     }
 
     public static class LoginBody {
@@ -77,7 +65,10 @@ public class AuthRestController {
 
     @PostMapping("/changePass")
     public boolean changePass(@CookieValue("auth-id") String authCookie, @RequestBody LoginBody loginBody) {
-        isLoggedIn(authCookie);
+        if (!AuthenticationUtils.isLoggedIn(authCookie)) {
+            return false;
+        };
+
         List<AuthorizationEntity> optAuthorizationEntity = authorizationRepository.findAll();
         if (optAuthorizationEntity.isEmpty()) {
             return false;
@@ -90,7 +81,9 @@ public class AuthRestController {
 
     @PostMapping("/logout")
     public boolean logout(@CookieValue("auth-id") String authCookie) {
-        isLoggedIn(authCookie);
+        if (!AuthenticationUtils.isLoggedIn(authCookie)) {
+            return false;
+        };
 
         List<AuthorizationEntity> optAuthorizationEntity = authorizationRepository.findAll();
         if (optAuthorizationEntity.isEmpty()) {
