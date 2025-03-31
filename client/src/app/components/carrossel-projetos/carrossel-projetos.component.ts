@@ -70,6 +70,7 @@ export class CarrosselProjetosComponent {
   }
 
   onTouchStart(event: TouchEvent): void {
+    return;
     this.pararIntervalo();
     this.posInicialDrag = { x: event.touches[0].clientX, y: event.touches[0].clientY };
     this.posAtualDrag = event.touches[0].clientX;
@@ -79,6 +80,7 @@ export class CarrosselProjetosComponent {
 
   @HostListener('window:touchmove', ['$event'])
   touchMoveEvent(event: TouchEvent): void {
+    return;
     if (this.isTouching) {
       this.posAtualDrag = event.touches[0].clientX;
     }
@@ -86,6 +88,7 @@ export class CarrosselProjetosComponent {
 
   @HostListener('window:touchend')
   onTouchEnd(): void {
+    return;
     this.isTouching = false;
     const diffParaMudar = 100;
     const diff = this.posAtualDrag - this.posInicialDrag.x;
