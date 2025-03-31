@@ -77,7 +77,11 @@ export class CriarProjetoComponent {
         }
       }) 
 
-      this.projetoService.criarProjeto(projeto).subscribe();
+      this.projetoService.criarProjeto(projeto).subscribe((res) => {
+        if (res) {
+          alert("Success")
+        }
+      });
     });
   }
 }

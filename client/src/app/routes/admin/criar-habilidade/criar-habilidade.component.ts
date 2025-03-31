@@ -45,7 +45,11 @@ export class CriarHabilidadeComponent {
           category: this.categorySelect.nativeElement.value as SkillCategory,
           image: imageResult[0],
           type: this.typeSelect.nativeElement.value as TechnologyTypeEnum,
-        }).subscribe();
+        }).subscribe((res) => {
+          if (res) {
+            alert("Success")
+          }
+        });
       })
     }
 }

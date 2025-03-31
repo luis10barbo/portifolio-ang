@@ -3,6 +3,7 @@ import { CriarProjetoComponent } from './routes/admin/criar-projeto/criar-projet
 import { CriarHabilidadeComponent } from './routes/admin/criar-habilidade/criar-habilidade.component';
 import { AppComponent as HomeComponent } from './routes/home/home.component';
 import { ProjectComponentComponent } from './routes/project/project.component';
+import { LoginComponent } from './routes/admin/login/login.component';
 
 export const routes: Routes = [
     {
@@ -10,15 +11,19 @@ export const routes: Routes = [
         component: HomeComponent
     },
     {
-        path: "admin/criar/projeto",
+        path: "admin/create/project",
         component: CriarProjetoComponent
     },
     {
-        path: "admin/criar/habilidade",
+        path: "admin/create/skill",
         component: CriarHabilidadeComponent
     },
     {
         path: "proj/:id",
         component: ProjectComponentComponent
+    },
+    {
+        path: "admin/login",
+        component: LoginComponent
     }
 ];
